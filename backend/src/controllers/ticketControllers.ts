@@ -7,7 +7,7 @@ export const getAllTickets = async (req: Request, res: Response) => {
   try {
     const tickets = await prisma.ticket.findMany({
       orderBy: {
-        createdAt: "asc",
+        created_at: "asc",
       },
     });
     res.status(200).json(tickets);
