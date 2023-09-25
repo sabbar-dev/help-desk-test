@@ -1,5 +1,6 @@
 import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
+const cors = require("cors");
 dotenv.config();
 import userRoutes from "./src/routes/userRoutes";
 import ticketRoutes from "./src/routes/ticketRoutes";
@@ -7,6 +8,7 @@ import ticketRoutes from "./src/routes/ticketRoutes";
 const app: Express = express();
 const port = process.env.PORT || 8000;
 
+app.use(cors());
 app.use(express.json());
 app.use("/user", userRoutes);
 app.use("/ticket", ticketRoutes);
