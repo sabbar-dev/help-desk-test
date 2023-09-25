@@ -5,6 +5,7 @@
 /backend/dist
 
 # Logs
+/frontend/.env
 /frontend/logs
 /frontend/*.log
 /frontend/npm-debug.log*

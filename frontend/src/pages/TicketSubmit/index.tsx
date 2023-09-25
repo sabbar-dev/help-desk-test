@@ -4,7 +4,7 @@ import { createTicket } from "../../services/createTask.service";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CreateTicket from "../../component/CreateTicket";
-const url = import.meta.env.VITE_DOMAIN_URL;
+import { showLoading, showSuccessToast, url } from "../../helpers";
 
 const SupportTicketForm: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
@@ -31,25 +31,6 @@ const SupportTicketForm: React.FC = () => {
     }));
   };
 
-  const showSuccessToast = (message: string) => {
-    toast.success(message, {
-      position: "top-right", // Set the position of the toast
-      autoClose: 3000, // Set the duration for the toast to auto-close in milliseconds (3 seconds in this case)
-    });
-  };
-
-  const showLoading = (message: string) => {
-    toast.info(message, {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

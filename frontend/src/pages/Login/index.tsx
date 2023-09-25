@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
-import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-type LoginInfo = {
-    name: string;
-    email: string;
-}
+import { LoginInfo } from '../../interfaces/ticket.types';
+import { showLoading, showSuccessToast, url } from '../../helpers';
+import { login } from '../../services/createTask.service';
+import { toast } from "react-toastify";
+import Login from '../../component/Login';
 
 function AdminLogin() {
     const [formData, setFormData] = useState<LoginInfo>({
-        name: '',
         email: '',
+        password: ''
     });
 
     const [errorsFormData, setErrorsFormData] = useState<Partial<LoginInfo>>({});
@@ -26,8 +25,8 @@ function AdminLogin() {
     const validateForm = () => {
         const errors: Partial<LoginInfo> = {};
 
-        if (!formData.name.trim()) {
-            errors.name = 'Name is required';
+        if (!formData.password.trim()) {
+            errors.password = 'password is required';
         }
 
         if (!formData.email.trim()) {
@@ -54,68 +53,26 @@ function AdminLogin() {
 
         // Clear any previous errors
         setErrorsFormData({});
+        showLoading("Processing");
+        login(`${url}/user/user-login`, formData)
+            .then((res) => {
+                if (res.status == 200) {
+                    showSuccessToast("Login successfully");
+                    setFormData({
+                        password: "",
+                        email: "",
+                    });
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+                toast.error("something went wrong")
+            });
 
-        // Submit the form or perform authentication
-        // (Add your logic here)
     };
 
     return (
-        <div className="max-w-md mx-auto">
-            <ToastContainer />
-            <form
-                onSubmit={handleSubmit}
-                className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
-            >
-                <div className="mb-4">
-                    <label
-                        htmlFor="name"
-                        className="block text-gray-700 text-sm font-bold mb-2"
-                    >
-                        Name
-                    </label>
-                    <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        placeholder="Your Name"
-                    />
-                    {errorsFormData['name'] ? (
-                        <span className="text-red-600">{errorsFormData['name']}</span>
-                    ) : null}
-                </div>
-                <div className="mb-4">
-                    <label
-                        htmlFor="email"
-                        className="block text-gray-700 text-sm font-bold mb-2"
-                    >
-                        Email
-                    </label>
-                    <input
-                        type="text"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        placeholder="Your Email"
-                    />
-                    {errorsFormData['email'] ? (
-                        <span className="text-red-600">{errorsFormData['email']}</span>
-                    ) : null}
-                </div>
-                <div className="flex items-center justify-between">
-                    <button
-                        type="submit"
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                    >
-                        Submit
-                    </button>
-                </div>
-            </form>
-        </div>
+        <Login handleChange={handleChange} formData={formData} errorsFormData={errorsFormData} handleSubmit={handleSubmit} />
     );
 }
 
