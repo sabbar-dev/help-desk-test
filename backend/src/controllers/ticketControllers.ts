@@ -5,7 +5,11 @@ const prisma = new PrismaClient();
 
 export const getAllTickets = async (req: Request, res: Response) => {
   try {
-    const tickets = await prisma.ticket.findMany();
+    const tickets = await prisma.ticket.findMany({
+      orderBy: {
+        createdAt: "asc",
+      },
+    });
     res.status(200).json(tickets);
   } catch (error) {
     console.error("Error retrieving tickets:", error);
