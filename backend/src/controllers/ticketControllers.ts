@@ -16,7 +16,6 @@ export const getAllTickets = async (req: Request, res: Response) => {
 export const createTicket = async (req: Request, res: Response) => {
   const { name, email, description } = req.body;
   try {
-    // Create a new ticket
     const newTicket = await prisma.ticket.create({
       data: {
         description,
@@ -38,16 +37,14 @@ export const updateTicket = async (req: Request, res: Response) => {
   const { newStatus } = req.body;
 
   try {
-    // Find the ticket by ID
     const ticket = await prisma.ticket.findUnique({
-      where: { id: parseInt(ticketId) }, // Assuming the ticket ID is an integer
+      where: { id: parseInt(ticketId) },
     });
 
     if (!ticket) {
       return res.status(404).json({ message: "Ticket not found" });
     }
 
-    // Update the ticket status
     const updatedTicket = await prisma.ticket.update({
       where: { id: parseInt(ticketId) },
       data: { status: newStatus },

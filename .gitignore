@@ -30,3 +30,25 @@
 /frontend/*.sln
 /frontend/*.sw?
 
+# dependencies
+/help-desk-frontend/node_modules
+/help-desk-frontend/.pnp
+/help-desk-frontend/.pnp.js
+
+# testing
+/help-desk-frontend/coverage
+
+# production
+/help-desk-frontend/build
+
+# misc
+/help-desk-frontend/.DS_Store
+/help-desk-frontend/.env.local
+/help-desk-frontend/.env.development.local
+/help-desk-frontend/.env.test.local
+/help-desk-frontend/.env.production.local
+
+/help-desk-frontend/npm-debug.log*
+/help-desk-frontend/yarn-debug.log*
+/help-desk-frontend/yarn-error.log*
+
