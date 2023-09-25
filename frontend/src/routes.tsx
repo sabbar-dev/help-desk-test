@@ -1,10 +1,14 @@
 // routes.tsx
 import { createBrowserRouter } from "react-router-dom";
-import SupportTicketForm from "./pages/TicketSubmit";
-
+import SupportTicketForm from "./pages/Users/TicketSubmit";
+import TickeList from "./pages/Admin/Dashboard";
 const routes = createBrowserRouter([
   {
     path: "/",
+    element: <TickeList />,
+  },
+  {
+    path: "/create",
     element: <SupportTicketForm />,
   },
 ]);

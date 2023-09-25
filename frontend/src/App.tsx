@@ -1,17 +1,14 @@
-import "./App.css";
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import SupportTicketForm from "./pages/TicketSubmit";
-import Dashboard from "./pages/Dashboard";
+import routes from "./routes";
+import { RouterProvider } from "react-router-dom";
+import MenuBar from "./components/MenuBar";
 
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<SupportTicketForm />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-        </Routes>
-      </BrowserRouter>
+      <MenuBar />
+      <div className="max-w-[75%] mx-auto mt-7">
+        <RouterProvider router={routes} />
+      </div>
     </>
   );
 }
