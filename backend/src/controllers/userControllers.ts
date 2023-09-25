@@ -28,8 +28,7 @@ export const userRegister = async (req: Request, res: Response) => {
       password: hashedPassword,
     },
   });
-  // Create and send a JWT token
-  //   const token = jwt.sign({ userId: newUser.id }, 'your-secret-key', { expiresIn: '1h' });
+
   res.status(201).json({ user: newUser });
 };
 
@@ -41,7 +40,7 @@ export const userLogin = async (req: Request, res: Response) => {
     where: { email },
   });
 
-  // Check if the user exists and has a 'user' role
+  // Check if the user exists
   if (!user) {
     return res.status(401).json({ message: "Invalid credentials" });
   }
@@ -57,7 +56,7 @@ export const userLogin = async (req: Request, res: Response) => {
   const token = jwt.sign(
     { userId: user.id, email: user.email },
     process.env.JWT_SECRET,
-    { expiresIn: "1h" }
+    { expiresIn: "2h" }
   );
 
   res.status(200).json({

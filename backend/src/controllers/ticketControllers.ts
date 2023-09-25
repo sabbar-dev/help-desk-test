@@ -16,7 +16,7 @@ export const getAllTickets = async (req: Request, res: Response) => {
 export const createTicket = async (req: Request, res: Response) => {
   const { name, email, description } = req.body;
   try {
-    // Create a new ticket without specifying a user
+    // Create a new ticket
     const newTicket = await prisma.ticket.create({
       data: {
         description,
