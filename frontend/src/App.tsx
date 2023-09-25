@@ -1,7 +1,7 @@
 import "./App.css";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import SupportTicketForm from "./pages/TicketSubmit";
-import AdminLogin from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   return (
@@ -9,8 +9,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<SupportTicketForm />} />
-          <Route path="/login" element={<AdminLogin />} />
-          {/* <PrivateRoute path="/dashboard" element={<Dashboard />} /> */}
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </BrowserRouter>
     </>

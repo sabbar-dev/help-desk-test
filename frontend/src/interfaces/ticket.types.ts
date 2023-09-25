@@ -4,7 +4,3 @@ export interface FormData {
   description: string;
 }
 export type PartialFormData = Partial<FormData>;
-export type LoginInfo = {
-  email: string;
-  password: string;
-};
