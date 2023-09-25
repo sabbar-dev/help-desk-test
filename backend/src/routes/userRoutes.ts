@@ -4,7 +4,7 @@ import * as userControllers from "../controllers/userControllers";
 const router = express.Router();
 
 router.post("/user-signup", userControllers.userRegister);
-router.get("/test", userControllers.testUsers);
+router.post("/user-login", userControllers.userLogin);
 
 const userRoutes = router;
 

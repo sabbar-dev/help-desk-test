@@ -8,7 +8,6 @@ const saltRounds = 10;
 
 export const userRegister = async (req: Request, res: Response) => {
   const { name, email, password } = req.body;
-  console.log("body====================", req.body);
   // Check if user already exists
   const existingUser = await prisma.user.findFirst({ where: { email } });
 
@@ -32,6 +31,44 @@ export const userRegister = async (req: Request, res: Response) => {
   // Create and send a JWT token
   //   const token = jwt.sign({ userId: newUser.id }, 'your-secret-key', { expiresIn: '1h' });
   res.status(201).json({ user: newUser });
+};
+
+export const userLogin = async (req: Request, res: Response) => {
+  const { email, password } = req.body;
+
+  // Find the user by email
+  const user = await prisma.user.findFirst({
+    where: { email },
+  });
+
+  // Check if the user exists and has a 'user' role
+  if (!user) {
+    return res.status(401).json({ message: "Invalid credentials" });
+  }
+
+  // Check if the password is correct
+  const isPasswordValid = await bcrypt.compare(password, user.password);
+
+  if (!isPasswordValid) {
+    return res.status(401).json({ message: "Invalid credentials" });
+  }
+
+  // Create and send a JWT token
+  const token = jwt.sign(
+    { userId: user.id, email: user.email },
+    process.env.JWT_SECRET,
+    { expiresIn: "1h" }
+  );
+
+  res.status(200).json({
+    user: {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+    },
+    token,
+  });
 };
 
 export const testUsers = async (req: Request, res: Response) => {

@@ -25,9 +25,18 @@ model User {
   tickets  Ticket[]
 }
 
+enum Status {
+  new
+  in_progress
+  resolved
+}
+
 model Ticket {
   id          Int    @id @default(autoincrement())
   description String
-  user        User   @relation(fields: [userId], references: [id])
-  userId      Int    @unique
+  name        String
+  email       String
+  status      Status
+  user        User?  @relation(fields: [userId], references: [id])
+  userId      Int?   @unique
 }
