@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react'
+import { Fragment } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 
@@ -9,7 +9,7 @@ function classNames(...classes: string[]) {
 interface IDropdown {
     options: string[];
     selected: string;
-    onChange: (value: string) => void;
+    onChange: (value: "new" | "in_progress" | "resolved") => void;
 }
 
 export default function Dropdown({ options, selected, onChange }: IDropdown) {

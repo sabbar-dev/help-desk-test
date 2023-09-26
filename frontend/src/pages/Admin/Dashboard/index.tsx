@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { TicketResponseData } from "../../../interfaces/ticket.types";
 import TicketDetailModal from "../../../components/TicketDetailModal";
 
@@ -79,10 +79,6 @@ export default function Example() {
                       <span className="mr-5 inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">
                         {ticket.status}
                       </span>
-                      {/* <EllipsisVerticalIcon
-                    className="h-5 w-5"
-                    aria-hidden="true"
-                  /> */}
                     </div>
                   </div>
                 </div>

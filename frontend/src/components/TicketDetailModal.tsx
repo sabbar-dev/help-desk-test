@@ -1,5 +1,4 @@
-// TicketDetailModal.tsx
-import React, { useState, Fragment } from "react";
+import React, { Fragment } from "react";
 import { TicketResponseData } from "../interfaces/ticket.types";
 import { updateTicketStatus } from "../services/createTask.service";
 import { Dialog } from "@headlessui/react";
@@ -27,7 +26,7 @@ const TicketDetailModal: React.FC<TicketDetailModalProps> = ({
 }) => {
   if (!isOpen || !ticketData) return null;
 
-  const updateStatus = async (value: string) => {
+  const updateStatus = async (value: "new" | "in_progress" | "resolved") => {
     try {
       await updateTicketStatus(`${url}/ticket/${ticketData.id}`, {
         newStatus: value,
@@ -98,7 +97,7 @@ const TicketDetailModal: React.FC<TicketDetailModalProps> = ({
                         <div className="w-full">
                           <Dropdown
                             selected={ticketData.status}
-                            onChange={(value) => {
+                            onChange={(value: "new" | "in_progress" | "resolved") => {
                               updateStatus(value)
                             }}
                             options={statusList}

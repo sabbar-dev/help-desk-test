@@ -1,4 +1,3 @@
-// TicketCard.tsx
 import React from "react";
 import { TicketResponseData } from "../interfaces/ticket.types";
 interface TicketCardProps {
@@ -18,9 +17,6 @@ const TicketCard: React.FC<TicketCardProps> = ({
         Name : {ticketDetail.name}
       </div>
       <div className="text-gray-600">Email : {ticketDetail.email}</div>
-      {/* <button className="absolute bottom-0 right-0 p-2 bg-blue-500 text-white rounded-bl-lg cursor-pointer">
-        View Details
-      </button> */}
       <button
         className="absolute bottom-0 right-0 p-2 bg-transparent border border-blue-500 text-blue-500 rounded-bl-lg cursor-pointer"
         onClick={() => ticketData(ticketDetail)}
