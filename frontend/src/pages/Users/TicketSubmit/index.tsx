@@ -6,7 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const url = import.meta.env.VITE_DOMAIN_URL;
 
-export default function Example() {
+export default function TicketSubmit() {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [formData, setFormData] = useState<FormData>({
     name: "",
@@ -119,7 +119,7 @@ export default function Example() {
             </div>
             <div className="sm:col-span-4">
               <label
-                htmlFor="username"
+                htmlFor="email"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
                 Email
@@ -129,7 +129,7 @@ export default function Example() {
                   <input
                     type="text"
                     name="email"
-                    id="username"
+                    id="email"
                     onChange={handleChange}
                     autoComplete="username"
                     className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"

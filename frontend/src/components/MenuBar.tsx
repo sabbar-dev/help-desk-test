@@ -1,7 +1,9 @@
 import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Link, useLocation } from "react-router-dom";
 
 export default function MenuBar() {
+  const location = useLocation();
   return (
     <Disclosure as="nav" className="bg-white shadow">
       {({ open }) => (
@@ -29,20 +31,20 @@ export default function MenuBar() {
                   />
                 </div>
                 <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                  <a
-                    href="/"
-                    className={`inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium ${window.location.pathname === "/" ? "border-indigo-500 text-gray-900" : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                  <Link
+                    to={"/"}
+                    className={`inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium ${location.pathname === "/" ? "border-indigo-500 text-gray-900" : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
                       }`}
                   >
                     Tickets
-                  </a>
-                  <a
-                    href="/create"
-                    className={`inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium ${window.location.pathname === "/create" ? "border-indigo-500 text-gray-900" : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                  </Link>
+                  <Link
+                    to={"/create"}
+                    className={`inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium ${location.pathname === "/create" ? "border-indigo-500 text-gray-900" : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
                       }`}
                   >
                     CreateTicket
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

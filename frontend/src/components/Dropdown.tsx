@@ -36,9 +36,9 @@ export default function Dropdown({ options, selected, onChange }: IDropdown) {
                             leaveTo="opacity-0"
                         >
                             <Listbox.Options className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                                {options.map((option: string, i: number) => (
+                                {options.map((option: string) => (
                                     <Listbox.Option
-                                        key={i}
+                                        key={option + "2938yhfojh"}
                                         className={({ active }) =>
                                             classNames(
                                                 active ? 'bg-indigo-600 text-white' : 'text-gray-900',

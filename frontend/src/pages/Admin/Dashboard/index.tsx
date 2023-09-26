@@ -56,7 +56,7 @@ export default function Example() {
           <>
             {ticketsList.map((ticket, i) => (
               <li
-                key={i}
+                key={ticket.id}
                 className="col-span-1 flex rounded-md shadow-sm cursor-pointer"
                 onClick={() => getTicketData(ticket)}
               >
