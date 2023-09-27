@@ -53,22 +53,22 @@ export default function MenuBar() {
 
           <Disclosure.Panel className="sm:hidden">
             <div className="space-y-1 pb-4 pt-2">
-              <Disclosure.Button
-                as="a"
-                href="/"
+              <Link
+
+                to="/"
                 className={`block border-l-4 border-indigo-500 py-2 pl-3 pr-4 text-base font-medium ${location.pathname === "/" ? "border-indigo-500 text-gray-900 bg-indigo-50 " : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
                   }`}
               >
                 Tickets
-              </Disclosure.Button>
-              <Disclosure.Button
-                as="a"
-                href="/create"
+              </Link>
+              <Link
+
+                to="/create"
                 className={`block border-l-4 border-indigo-500  py-2 pl-3 pr-4 text-base font-medium ${location.pathname === "/create" ? "border-indigo-500 text-gray-900 bg-indigo-50 " : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
                   }`}
               >
                 Create Ticket
-              </Disclosure.Button>
+              </Link>
             </div>
           </Disclosure.Panel>
         </>
