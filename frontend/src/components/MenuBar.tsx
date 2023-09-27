@@ -8,7 +8,7 @@ export default function MenuBar() {
     <Disclosure as="nav" className="bg-white shadow">
       {({ open }) => (
         <>
-          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+          <div className="max-w-[75%] mx-auto    ">
             <div className="relative flex h-16 justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button */}
@@ -22,7 +22,7 @@ export default function MenuBar() {
                   )}
                 </Disclosure.Button>
               </div>
-              <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+              <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start ">
                 <div className="flex flex-shrink-0 items-center">
                   <img
                     className="h-8 w-auto"
@@ -43,8 +43,9 @@ export default function MenuBar() {
                     className={`inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium ${location.pathname === "/create" ? "border-indigo-500 text-gray-900" : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
                       }`}
                   >
-                    CreateTicket
+                    Create Ticket
                   </Link>
+
                 </div>
               </div>
             </div>
@@ -55,16 +56,18 @@ export default function MenuBar() {
               <Disclosure.Button
                 as="a"
                 href="/"
-                className="block border-l-4 border-indigo-500 bg-indigo-50 py-2 pl-3 pr-4 text-base font-medium text-indigo-700"
+                className={`block border-l-4 border-indigo-500 py-2 pl-3 pr-4 text-base font-medium ${location.pathname === "/" ? "border-indigo-500 text-gray-900 bg-indigo-50 " : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                  }`}
               >
                 Tickets
               </Disclosure.Button>
               <Disclosure.Button
                 as="a"
                 href="/create"
-                className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+                className={`block border-l-4 border-indigo-500  py-2 pl-3 pr-4 text-base font-medium ${location.pathname === "/create" ? "border-indigo-500 text-gray-900 bg-indigo-50 " : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                  }`}
               >
-                CreateTicket
+                Create Ticket
               </Disclosure.Button>
             </div>
           </Disclosure.Panel>

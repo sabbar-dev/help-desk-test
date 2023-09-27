@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { TicketResponseData } from "../interfaces/ticket.types";
 import { updateTicketStatus } from "../services/createTask.service";
 import { Dialog } from "@headlessui/react";
@@ -6,7 +6,7 @@ import { CheckIcon } from "@heroicons/react/24/outline";
 import { Transition } from "@headlessui/react";
 import { ToastContainer, toast } from "react-toastify";
 import Dropdown from "./Dropdown";
-
+import Spinner from "./Spinner";
 const url = import.meta.env.VITE_DOMAIN_URL;
 interface TicketDetailModalProps {
   isOpen: boolean;
@@ -24,10 +24,12 @@ const TicketDetailModal: React.FC<TicketDetailModalProps> = ({
   setTicketData,
   onClose,
 }) => {
+  const [isloading, setIsLoading] = useState<boolean>(false)
   if (!isOpen || !ticketData) return null;
 
   const updateStatus = async (value: "new" | "in_progress" | "resolved") => {
     try {
+      setIsLoading(true)
       await updateTicketStatus(`${url}/ticket/${ticketData.id}`, {
         newStatus: value,
       });
@@ -35,6 +37,7 @@ const TicketDetailModal: React.FC<TicketDetailModalProps> = ({
         ...ticketData,
         status: value
       })
+      setIsLoading(false)
     } catch (error) {
       toast.error('Something went wrong.', {
         position: "top-right",
@@ -71,7 +74,7 @@ const TicketDetailModal: React.FC<TicketDetailModalProps> = ({
                 leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                 leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
               >
-                <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
+                <Dialog.Panel className="absolute top-[30%] transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
                   <div>
                     <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
                       <CheckIcon
@@ -103,10 +106,11 @@ const TicketDetailModal: React.FC<TicketDetailModalProps> = ({
                             options={statusList}
                           />
                         </div>
+                        {isloading ? <Spinner /> : null}
                       </div>
                       <div className="mt-2 flex ">
                         <p className="">Description : </p>
-                        <p className="text-sm text-gray-500 mt-1 ml-1">
+                        <p className="text-sm text-gray-500 mt-1 ml-1 max-h-20 overflow-auto">
                           {ticketData.description}
                         </p>
                       </div>

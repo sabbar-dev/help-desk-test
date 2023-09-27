@@ -4,6 +4,7 @@ import { createTicket } from "../../../services/createTask.service";
 import { FormData } from "../../../interfaces/ticket.types";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Spinner from "../../../components/Spinner";
 const url = import.meta.env.VITE_DOMAIN_URL;
 
 export default function TicketSubmit() {
@@ -106,7 +107,7 @@ export default function TicketSubmit() {
                     value={formData.name}
                     onChange={handleChange}
                     autoComplete="username"
-                    className="block flex-1 border-0 bg-transparent py-1.5 pl-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 placeholder:px-1"
+                    className="block flex-1 border-0 bg-transparent py-1.5 px-[8px] text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 placeholder:px-1"
                     placeholder="name"
                   />
                 </div>
@@ -130,9 +131,10 @@ export default function TicketSubmit() {
                     type="text"
                     name="email"
                     id="email"
+                    value={formData.email}
                     onChange={handleChange}
                     autoComplete="username"
-                    className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                    className="block px-[8px] flex-1 border-0 bg-transparent py-1.5  text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                     placeholder="janesmith"
                   />
                 </div>
@@ -155,8 +157,9 @@ export default function TicketSubmit() {
                   id="about"
                   name="description"
                   onChange={handleChange}
+                  value={formData.description}
                   rows={3}
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block px-[8px] w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   defaultValue={""}
                 />
               </div>
@@ -171,9 +174,9 @@ export default function TicketSubmit() {
         <button
           type="submit"
           disabled={isLoading}
-          className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          className="rounded-md bg-indigo-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
         >
-          {isLoading ? 'Saving...' : 'Save'}
+          {isLoading ? <Spinner /> : 'Save'}
         </button>
       </div>
     </form>
